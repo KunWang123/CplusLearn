@@ -85,6 +85,151 @@ void function_test3_default(int a){
 }
 // function_test3_default(int a， int b =10)
 
+
+/******************part4 封装 ************************/
+//c++面向对象的三大特性为： 封装、继承、多态
+// 封装的意义：将属性和行为作为一个整体，表现生活中的事物；将属性和行为加以权限限制
+// 1 设计一个圆类，求解周长
+const double PI=3.1415926;
+class Circle
+{
+// 访问权限
+private:
+    /* data */
+public:
+    int m_r;//半径
+
+    // 行为： 计算周长
+    double calculateZC(){
+        return 2 * PI * m_r;
+    }
+};
+
+class Student
+{
+private:
+    /* data */
+public:
+    string name = "";
+    string number = "";
+    void shownumberandname(){
+        cout << "姓名： " << name << endl;
+        cout << "学号： " << number << endl;
+        return;
+    }
+};
+
+// 2 类的访问权限： 
+// 公共权限: 成员 类内可以访问，类外可以访问
+// 保护权限：成员 类内可以访问，类外不可以访问； 继承中：子可以访问
+// 私有权限：成员 类内可以访问，类外不可以访问； 继承中：子不可以访问
+class Person
+{
+private:
+    int m_Password;
+public:
+    string m_Name;
+protected:
+    string car;
+};
+
+// 3 struct 和 class 的区别； struct的默认权限是公共， class的默认权限是私有
+class Test
+{
+    int m_A; // private, 外部不能访问
+};
+struct Test1
+{
+    int m_A; // public, 外不能访问
+};
+
+// 4 成员属性设置为私有化
+// 1) 可以自己控制读取权限 2)对于写可以检测数据的有效性
+class class_test4
+{
+private:
+    int p_Age = 10;//读
+    string p_Name = ""; // 读写
+    string p_Lover = "";// 写
+public:// 设置定义私有成员的权限
+    string getName(){
+        return p_Name;
+    }
+    string setName(string name){
+        p_Name = name;
+    }
+    string setLover(string name){
+        p_Lover = name;
+    }
+};
+
+// 5 test example 设置立方体，并计算面积和体积
+class class_5TestCube
+{
+private:
+    double m_L=0;//长宽高
+    double m_W=0;//长宽高
+    double m_H=0;//长宽高
+public:
+    //设置值 
+    void setLength(double length){
+        m_L = length;
+    }
+    void setWidth(double width){
+        m_W = width;
+    }
+    void setHeight(double height){
+        m_H = height;
+    }
+    // 输出值
+    double getLenght(){
+        return m_L;
+    }
+    double getWidth(){
+        return m_W;
+    }
+    double getHeight(){
+        return m_H;
+    }
+    // 计算 面积体积
+    double calculateV(){
+        return m_L * m_W * m_H;
+    }
+    double calculateS(){
+        return 2*m_L * m_W + 2 * m_L * m_H + 2 * m_H * m_W;
+    }
+
+    // 判断两个立方体是否相等
+    bool isSameCube(class_5TestCube &c){
+        if(m_L==c.getLenght() && m_H==c.getHeight() && m_W==c.getWidth()){
+            return true;
+        }
+        return false;
+    }
+};
+
+/******************part5 对象特性 ************************/
+// 1 构造函数和析构函数: 不提供的时候，编译器会提供空函数
+class duixiang_test1
+{
+private:
+    /* data */
+public:
+    duixiang_test1(/* args */);
+    ~duixiang_test1();
+};
+
+duixiang_test1::duixiang_test1(/* args */)
+{
+    cout << "duixiang_test1" << endl;
+}
+
+duixiang_test1::~duixiang_test1()
+{
+    cout << "duixiang_test1 destroyed" << endl;
+}
+
+
 int main(){
 
     // int *p = func();
@@ -92,6 +237,17 @@ int main(){
     // cout << *p <<endl;
     // delete p;
     // yinyong_test2();
-    function_test2(10);
+    // function_test2(10);
+    /******************part4 封装 ************************/
+    // Circle c1; // 实例化
+    // c1.m_r = 10;
+    // double zc = c1.calculateZC();
+    // cout << "周长： " << zc << endl;
+    // Student wangkun;
+    // wangkun.name = "wangkun";
+    // wangkun.number = "130418";
+    // wangkun.shownumberandname();
+    duixiang_test1 t1;
+
     return 0;
 }
