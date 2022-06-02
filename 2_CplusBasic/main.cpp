@@ -229,6 +229,76 @@ duixiang_test1::~duixiang_test1()
     cout << "duixiang_test1 destroyed" << endl;
 }
 
+// 2、构造函数的分类及调用
+// 1) 分类
+//    按照参数分类： 无参构造（默认构造）和 有参构造
+//    按照类型分类： 普通构造  和 拷贝构造
+class duixiang_test2
+{
+private:
+    int age;
+public:
+    // 普通构造----无参构造
+    duixiang_test2(){
+        cout << "无参构造函数" << endl;
+    }
+    // 普通构造----有参构造
+    duixiang_test2(int a){
+        cout << "有参构造函数" << endl;
+        age = a;
+        cout << "age: " << age << endl;
+    }
+    // 拷贝构造
+    duixiang_test2(const duixiang_test2 &p){
+        // 将传入类的所有属性都拷贝到我身上
+        cout << "拷贝构造函数" << endl;
+        age=p.age;
+    }
+    ~duixiang_test2(){}
+};
+// 2) 调用
+void duixiang_test2_diaoyong(){
+    // 1 括号法
+    duixiang_test2 p1;//duixiang_test2 p1(); 错误，编译器理解为函数声明
+    duixiang_test2 p2(10);
+    duixiang_test2 p3(p2);
+
+    // 2 显示法
+    duixiang_test2 p4;
+    duixiang_test2 p5 = duixiang_test2(10);//有参构造
+    duixiang_test2 p6 = duixiang_test2(p5);//拷贝构造
+
+    duixiang_test2(10);// 匿名对象
+    //duixiang_test2(p5);// 编译器默认为 duxiang_test2 p5;
+
+    // 隐式转换法
+    duixiang_test2 p7 = 10;// 有参构造
+    duixiang_test2 p8 = p7;// 拷贝构造
+}
+
+// 3、拷贝构造函数的调用时机
+//   1) 使用一个已经创建完毕的对象来初始化一个新对象;
+//   2) 值传递的方式给函数参数传值;//函数传参时候会调用
+//   3) 值方式返回局部对象；// 函数返回一个类的对象时，做了拷贝
+class duixiang_test3{
+public:
+    duixiang_test3(int age){
+        m_Age = age;
+        cout << "参数构造函数" << endl;
+    };
+
+private:
+    int m_Age;
+};
+
+// 4、构造函数的调用规则
+//  默认情况下，c++编译器会至少给一个类添加3个函数
+//   1) 默认无参构造函数（无参， 函数体为空）
+//   2) 默认无参析构函数（无参，函数体为空）
+//   3) 默认拷贝构造函数，对属性进行值拷贝
+// 但是，当
+//   1) 如果用户定义有参构造函数，c++不在提供无参构造函数，但是会提供拷贝构造函数
+//   2) 如果用户定义了拷贝构造函数，c++不在提供其他构造函数
 
 int main(){
 
@@ -247,7 +317,8 @@ int main(){
     // wangkun.name = "wangkun";
     // wangkun.number = "130418";
     // wangkun.shownumberandname();
-    duixiang_test1 t1;
+    // duixiang_test1 t1;
+    duixiang_test2_diaoyong();
 
     return 0;
 }
