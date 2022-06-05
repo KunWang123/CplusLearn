@@ -40,4 +40,10 @@
         "fstream": "cpp",
         "sstream": "cpp"
     }
+    // "[cpp]": {
+    //     "files.encoding": "gbk"
+    // },
+    // "[c]":{
+    //     "files.encoding": "gbk"
+    // }
 }
