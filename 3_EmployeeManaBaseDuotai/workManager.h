@@ -10,6 +10,7 @@ private:
     /* data */
 public:
     workManager(/* args */);
-    void showmeau();
+    void ShowMeau();
+    void ExitSystem();
     ~workManager();
 };
