@@ -1,2 +1,5 @@
 0_CBasic: 学习C过程中的基础知识代码
 1_AddressBook：通讯录管理系统项目
+2_CplusBasic： c++面向对象的基础(封装、继承、多态)
+3_EmployeeManaBaseDuotai：基于2的员工管理系统项目
+4_CplusBasic： c++模板基础知识
