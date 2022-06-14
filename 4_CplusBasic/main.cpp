@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include<vector>
+#include<algorithm>
 using namespace std;
 /****************part11 模板****************/
 // c++另一种编程思想成为 泛型编程， 主要利用的技术就是模板
@@ -173,7 +175,6 @@ void template7_test2(){
     T8_Person<string> p2("Tom2", 10);//第二个可以默认，不用给定，也可以给
 }
 
-
 // 9、类模板中成员函数创建时机
 //   类模板中成员函数在调用时才被创建
 template<class T>
@@ -264,6 +265,46 @@ T12_Person<T1,T2>::T12_Person(T1 name, T2 age){//T12_Person<T1,T2>加上模板的参数
 
 // 14、友元函数类内/外实现
 
+/****************part12 STL****************/
+// 1、为了建立数据结构和算法的一套标准，诞生了STL(提高代码的复用性、减少重复工作)
+//  1) 基本概念
+//    STL(标准模板库， standard template library)
+//    STL从广义上分为：容器（container）算法（algorithm）迭代器（iterator）
+//    STL几乎所有代码都使用类模板或者函数模板
+//    六大组件：容器、算法、迭代器、仿函数、适配器、空间配置器
+
+// 1、容器(运用最广泛的一些数据结构实现)
+//    序列式容器；关联式容器
+// 2、算法（质变算法；非质变算法；(数值变没变)）
+// 3、迭代器（常用双向迭代器和随机访问迭代器）
+
+// 1、容器（vector）
+void STL1_func1(int val){
+    cout << val << endl;
+}
+void STL1_test1(){
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(20);
+
+    // 通过迭代器访问
+    vector<int>::iterator itBegin = v.begin();
+    vector<int>::iterator itEnd = v.end();
+    // 第一种遍历
+    while (itBegin != itEnd)
+    {
+        cout<<*itBegin<<endl;
+        itBegin++;
+    }
+    // 第三种遍历 使用算法
+    for_each(v.begin(), v.end(), STL1_func1);
+}
+
+// 2、string
+//  string是一个类，类内封装了很多方法
+//  1) 构造函数原型
+//   string(); string(const char*s); string(const string &str); string(itn n, char c)
+//  2) 赋值操作
 
 
 int main(){
