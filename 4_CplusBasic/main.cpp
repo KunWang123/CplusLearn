@@ -305,7 +305,213 @@ void STL1_test1(){
 //  1) 构造函数原型
 //   string(); string(const char*s); string(const string &str); string(itn n, char c)
 //  2) 赋值操作
+//  3) 子串获取
 
+// 3、vector容器
+//  1、基本语法
+//  1) 数组是静态空间，vector可以动态扩展
+//  2) v.begin()指向第一个元素，v.end()指向最后一个元素的下一个位置
+//  3) vector构造函数
+void vector_fun1(){
+    vector<int> v1;//默认构造,无参构造
+    for(int i = 0; i < 10; i++){
+        v1.push_back(i);
+    }
+    vector<int> v1(v1.begin(), v1.end());// 通过区间方式进行构造
+    
+    vector<int> v3(10, 100);//v3里面10个100
+
+    vector<int> v4(v3);// 拷贝构造函数
+}
+
+//  2、给vector容器进行赋值
+//  1) 直接=
+//  2）提供assign[begin,end)区间
+//  3) 提供assign(n, val)
+void vector_fun2(){
+    vector<int> v1;
+    for(int i = 0; i < 10; i++){
+        v1.push_back(i);
+    }
+    vector<int> v2;
+    v2 = v1;
+
+    vector<int>v3;
+    v3.assign(v1.begin(), v1.end());
+
+    vector<int> v4;
+    v4.assign(10, 100);// (n, val)
+    return;
+}
+
+//  3、容量大小
+//  empty(), 判断是否为空
+//  capacity(), 容器容量
+//  size(), 容器元素的个数
+//  resize(n),重新制定大小，过长则补0
+//  resize(n, val),重新指定大小，过长则补val
+
+//  4、vector的插入和删除
+//  push_back()
+//  pop_back(), 删除最后一个元素
+//  insert(const_iterator position, val); 迭代器指定位置position插入val
+//  insert(const_iterator pos, int count, val); 迭代器指定位置pos,插入count个val
+//  erase(const_iterator pos); 删除迭代器指向的元素
+//  erase(const_iterator start, const_iterator end);删除迭代器从start到end之间的元素
+//  clear(); 删除容器中所有元素
+
+//  5、vector数据存取
+//  at(int num);访问元素
+//  [int num];访问元素
+//  .front(); .back(); 第一个、最后一个元素
+
+//  6、vector容器的互换
+//  
+void vector_fun6(){
+    vector<int> v1;
+    for(int i = 0; i < 10; i++){
+        v1.push_back(i);
+    }
+    vector<int> v2;
+    for(int i = 10; i > 1; i--){
+        v2.push_back(i);
+    }
+    v1.swap(v2); //互换v1 和 v2 数据
+    return ;
+    vector<int>(v1).swap(v1);//使用匿名对象更新v1的容量和size
+}
+
+//  7、预留空间
+//   利用reserve预留空间
+void vector_fun7(){
+    vector<int> v1;
+    v1.reserve(1000);// 预留1000个空间，避免创建时多次重新开辟内存
+}
+
+#include<deque>
+// 4、deque
+//  构造函数
+void deque_print1(const deque<int> &d){
+    for (deque<int>::const_iterator it=d.begin(); it !=d.end(); it++)
+    {
+        cout<<*it<<endl;
+    }
+    return;
+}
+void deque_func1(){
+    deque<int> d1;
+    for (int i = 0; i < 10; i++)
+    {
+        d1.push_back(i);
+    }
+    deque<int> q2(d1.begin(), d1.end());
+}
+//  赋值操作
+//  deque& operator=(const deque&deq);//重载 
+//  assign(beg, end);// 将[beg,end)区间中的数据拷贝赋值给本身
+//  assign(n, elem);// 将n个elem拷贝赋值给本身
+
+//  大小操作
+// deque.empty()
+// deque.size()
+// deque.resize(n)
+// deque.resize(n, val)
+
+// 插入删除
+//  push_back();
+//  push_front();//头部插入一个数据
+//  pop_back(); 删除容器最后一个数据
+//  pop_front(); 删除容器第一个数据
+/// 指定位置操作
+//  insert(pos, elem);//pos位置插入一个elem元素的拷贝，返回新数据的位置
+//  insert(pos, n, elem);// pose位置插入n个elem数据，无返回值
+//  insert(pos, beg, end);;在pos位置插入[beg,end)区间的数据，无返回值
+//  clear();
+//  erase(beg, end)
+//  erase(pos);
+
+//  deque 排序
+#include<algorithm>
+void deque_func6(){
+    deque<int> deq1;
+    deq1.push_back(100);
+    deq1.push_back(1);
+    deq1.push_front(2);
+    // 对于支持随机访问迭代器的容器都可以使用sort算法进行排序
+    sort(deq1.begin(), deq1.end());
+}
+
+#include<stack>
+//  stack 
+// pop,push
+void stack_func1(){
+    stack<int> stk;
+    stk.push(10);
+    if (!stk.empty())
+    {
+        stk.pop();
+    }
+    cout << stk.size();
+    
+}
+
+#include<queue>
+// queue
+// push(), pop()
+void queue_func1(){
+    queue<int> q1;
+    q1.push(10);
+    if (!q1.empty())
+    {
+        q1.pop();
+    }
+    // front,back
+}
+#include<list>
+//  list
+//   包含：数据域和指针域
+//   和vector比较常用
+void list_func1(){
+    list<int> l1;
+    l1.push_back(10);
+    l1.push_back(20);
+    // 区间构造
+    list<int>l2(l1.begin(), l2.end());
+
+    // 拷贝构造
+    list<int>l3(l1);
+
+    // n个elem
+    list<int> l4(10, 1000);
+}
+//  赋值
+void list_func2(){
+    list<int> l1;
+    l1.push_back(10);
+    l1.push_back(20);
+    list<int> l2;
+    l2 = l1;
+    list<int> l3;
+    l3.assign(l1.begin(), l2.end());
+    list<int>l4;
+    l4.assign(10, 1000);
+    l4.swap(l1);
+}
+// list的插入和删除
+// push_back(); pop_back();push_front();pop_front();
+// insert();clear();erase();remove();
+//  inverse,sort
+bool jiangxu(int val1, int val2){
+     return val1 > val2;
+}
+void list_func3(){
+    list<int> l1;
+    l1.push_back(10);
+    l1.push_back(20);
+    l1.reverse();
+    l1.sort();// 自带的，不是algorithm中的，升序
+    l1.sort(jiangxu);
+}
 
 int main(){
     template_test3_func1();
