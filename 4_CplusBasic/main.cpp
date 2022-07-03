@@ -513,6 +513,134 @@ void list_func3(){
     l1.sort(jiangxu);
 }
 
+#include<set>
+// set 和 multiset
+//  set不允许存在重复元素，所有元素插入后会自动排序，
+//  multiset允许存在重复元素
+void set_func1(){
+    set<int> s1;
+    s1.insert(10);
+    return ;
+}
+//  size();返回容器大小
+//  empty();是否为空
+//  swap();交换两个set元素
+//  insert();插入
+//  clear();清除
+//  erase(val); erase(*pointer);
+//  find(key);count(key);
+void set_func2(){
+    set<int> s1;
+    s1.insert(10);
+    set<int>::iterator pos = s1.find(10);
+    if(pos != s1.end()){
+        cout << "找到元素：" << endl;
+    }
+    int num = s1.count(10);//只能是0/1
+}
+//  multiset
+void multiset_func1(){
+    multiset<int> ms1;
+    ms1.insert(10);
+    ms1.insert(10);// 可以多次插入相同值
+    return;
+}
+// pair对组创建
+//  成对出现的数据，利用对组可以返回两个数据
+//  两种创建方式
+//   pair<type, type> p(value1, value2);
+//   pair<type, type> p = make_pair(value1, value2);
+void pair_func1(){
+    pair<string, int> p ("Tom", 30);
+    cout << p.first << p.second << endl;
+    return;
+}
+// 仿函数指定set排序顺序
+// set<int, 仿函数>set1;//插入数据前指定排序规则
+
+#include<map>
+//  map/multimap容器(高效)
+//  <key, val>
+//  按照key排序
+//  size(); empty(); swap();
+//  
+void map_func1(){
+    map<int, int> m1;
+    m1.insert(pair<int, int>(1, 10));
+    map<int, int> m2(m1);// 拷贝构造
+    map<int, int> m3;
+    m3 = m1;
+    return ;
+}
+
+/****************part13 函数对象****************/
+// 函数对象概念
+//  1) 函数对象可以想普通函数那样调用
+//  2) 函数对象超出普通函数的概念，可以有自己的状态
+//  3) 函数对象可以作为参数传递
+class func13_class1
+{
+public:
+    func13_class1(){
+        count = 0;
+    }
+    void operator()(string test){
+        cout << test << endl;
+        count++;
+    }
+    int count;//2)自己状态
+};
+void func13_doprint(func13_class1&mp, string test){
+    mp(test);
+    return ;
+}
+void func13_test1(){
+    func13_class1 myprint;
+    myprint("hello c++");
+    func13_doprint(myprint, "hello c++2");//3)函数对象作为参数传递
+}
+
+// 2、谓词
+//  返回bool类型的仿函数称为谓词
+//  如果operator()接受一个参数，那么叫做一员谓词
+//  如果operator()接受两个参数，那么叫做二员谓词
+
+#include<functional>
+// 3、内建函数对象
+//  negate 一元仿函数，取反仿函数
+//  plus 二元仿函数， 加法
+void function3_test1(){
+    negate<int> n;
+    cout << n(50) << endl;// -50
+
+    plus<int> pl;
+    cout<<pl(10, 20) << endl;// 30
+}
+//  greater<>; //大于，关系仿函数
+//  logical_not<>;// 逻辑仿函数
+
+/****************part14 算法****************/
+#include<algorithm>
+// <alogrithm>是所有STL文件中最大的一个
+// <numeric>数学运算的模板
+// <functional>定义了一些模板类，用以声明函数对象
+// for_each//遍历容器
+// transform//搬运容器到另一个容器中
+// find; find_if
+// adjacent_find();//关联相同值
+// binary_search();//二分查找法
+// count;count_if;
+// sort
+// random_shuffle
+// merge
+// reverse
+// copy; replace; replace_if
+// swap
+#include<numeric>
+// accumulate;
+// fill;
+// set_intersection; set_union; set_difference;//集合处理的交、并、差
+
 int main(){
     template_test3_func1();
     return 0 ;
