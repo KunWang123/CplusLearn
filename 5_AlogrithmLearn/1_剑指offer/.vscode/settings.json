@@ -38,7 +38,8 @@
         "tuple": "cpp",
         "utility": "cpp",
         "fstream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "queue": "cpp"
     },
     "[cpp]": {
         "files.encoding": "gb2312"
